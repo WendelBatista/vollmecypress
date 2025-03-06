@@ -12,6 +12,7 @@
       "compile": "npx tsc"
    },
    "dependencies": {
+      "api-voll_med": "file:",
       "cors": "^2.8.5",
       "dotenv": "^16.0.3",
       "express": "^4.18.2",

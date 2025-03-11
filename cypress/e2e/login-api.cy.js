@@ -27,7 +27,7 @@ describe('Testes em API', () => {
 
     context('Validações em respostas da API', () => {
         beforeEach(() => {
-            cy.fixture('especialistas').as('especialistas');
+            cy.fixture('especialistas.json').as('especialistas');
             cy.loginApi(Cypress.env('email'), Cypress.env('senha'))
         })
 

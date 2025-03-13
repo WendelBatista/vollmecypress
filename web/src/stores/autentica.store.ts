@@ -21,7 +21,7 @@ class AutenticaStore {
     login({email, token} : IUsuario) {
         this.usuario = {email, token};
         this.estaAutenticado = true;
-        
+        localStorage.setItem("token", token);
     }
 
     logout() {

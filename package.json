@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "cypress-plugin-api": "^2.11.2",
+    "typescript": "^5.8.2",
     "vollmedcy": "file:"
   }
 }

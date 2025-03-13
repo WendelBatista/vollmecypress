@@ -3,4 +3,5 @@ export enum Role {
   paciente = "PACIENTE",
   especialista = "ESPECIALISTA",
   clinica = "CLINICA",
+  planoSaude = "PLANOSAUDE"
 }

@@ -9,6 +9,7 @@ import * as dotenv from 'dotenv'
 import { Clinica } from './clinicas/clinicaEntity.js'
 import { Consulta } from './consultas/consultaEntity.js'
 import { Autenticaveis } from './auth/authEntity.js'
+import { PlanoSaude } from './planosDeSaude/planosDeSaudeEntity.js'
 dotenv.config({ path: '.env' })
 
 // export const AppDataSource = new DataSource({
@@ -29,7 +30,7 @@ export const AppDataSource = new DataSource({
   database: './src/database/database.sqlite', // caminho para o arquivo do banco de dados SQLite
   synchronize: true,
   logging: false,
-  entities: [Paciente, Endereco, Especialista, Avaliacoes, Clinica, Consulta, Autenticaveis],
+  entities: [Paciente, PlanoSaude, Endereco, Especialista, Avaliacoes, Clinica, Consulta, Autenticaveis],
   migrations: [],
   subscribers: []
 })

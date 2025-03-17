@@ -16,20 +16,24 @@ export const planosSaude = async (req: Request, res: Response): Promise<void> =>
 
 // Post
 export const criarPlanoSaude = async (req: Request, res: Response): Promise<void> => {
-  let { nome, cnpj, registroAns, descricao, senha } = req.body
+  const { nome, cnpj, registroAns, descricao, estaAtivo, email } = req.body
 
-  const senhaCriptografada = encryptPassword(senha)
-  const planoSaude = new PlanoSaude (nome, cnpj, registroAns, descricao, senhaCriptografada)
+  // Validação dos campos obrigatórios
+  if (!nome || !cnpj || !registroAns) {
+    res.status(400).json({ status: 400, message: 'Os campos nome, cnpj e registroAns são obrigatórios' })
+    return
+  }
 
   try {
+    const planoSaude = new PlanoSaude(nome, cnpj, registroAns, descricao, estaAtivo ?? true, email)
+
+    // Salva o plano de saúde no banco de dados
     await AppDataSource.manager.save(PlanoSaude, planoSaude)
-    res.status(200).json(planoSaude)
+
+    res.status(201).json({ status: 201, message: 'Plano de saúde criado com sucesso' })
   } catch (error) {
-    if ((await AppDataSource.manager.findOne(PlanoSaude, { where: { cnpj } })) != null) {
-      res.status(422).json({ message: 'CNPJ já cadastrado' })
-    } else {
-      throw new AppError('Plano de saúde não foi criado')
-    }
+    console.error('Erro ao criar plano de saúde:', error)
+    res.status(500).json({ status: 500, message: `Internal server error: ${error.message}` })
   }
 }
 

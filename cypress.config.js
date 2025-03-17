@@ -21,8 +21,10 @@ module.exports = defineConfig({
     projectId: "tu7dgp", //Insira a projectId pela fornecida no seu Cypress Cloud
     defaultCommandTimeout: 60000,
     env:{
-      "email": "clinica@gmail.com",
-      "senha": "4321",
+      //"email": "clinica@gmail.com",
+      //"senha": "4321",
+      "email": "wendel@email.com",
+      "senha": "1234",
       "api_login": "http://localhost:8080/auth/login",
       "api_clinica": "http://localhost:8080/clinica",
       "api_especialista": "http://localhost:8080/especialista",

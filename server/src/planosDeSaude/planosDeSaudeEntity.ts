@@ -1,17 +1,13 @@
 import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    ManyToOne,
-    Relation
-  } from "typeorm";
-  import { type IAutenticavel } from "../auth/IAutencavel.js";
-  import { Role } from "../auth/roles.js";
-   
-  @Entity()
-  export class PlanoSaude implements IAutenticavel {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  Column,
+  Entity,
+  PrimaryGeneratedColumn
+} from "typeorm";
+
+@Entity('planosaude')
+export class PlanoSaude {
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
   
     @Column("varchar", { length: 100 })
     nome: string;
@@ -30,20 +26,14 @@ import {
 
     @Column("varchar", { length: 100, nullable: true })
     email: string;
-  
-    @Column("varchar", { length: 100, select: false })
-    senha: string; // Criptografia?
-
-    @Column("varchar", { nullable: false })
-    role: Role;
     
-    constructor(nome, cnpj, registroAns, descricao, estaAtivo) {
+    constructor(nome, cnpj, registroAns, descricao, estaAtivo: boolean = true, email: string) {
       this.nome = nome;
       this.cnpj = cnpj;
       this.registroAns = registroAns;
       this.descricao = descricao;
       this.estaAtivo = estaAtivo;
-      this.role = Role.planoSaude;
+      this.email = email;
     }
   }
   

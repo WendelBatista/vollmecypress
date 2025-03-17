@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, toJS } from "mobx";
 
 interface IUsuario {
     email: string,
@@ -19,9 +19,11 @@ class AutenticaStore {
     }
 
     login({email, token} : IUsuario) {
+        console.log("Token recebido no login:", token);
         this.usuario = {email, token};
         this.estaAutenticado = true;
         localStorage.setItem("token", token);
+        console.log("Estado do autenticaStore após login:", toJS(this.usuario));
     }
 
     logout() {

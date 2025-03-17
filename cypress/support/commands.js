@@ -5,6 +5,7 @@ Cypress.Commands.add('login', (email, senha) => {
         cy.get('[data-test="inputLoginSenha"]').type(senha, { log: false })
         cy.get('[data-test="botaoTeste"]').should('be.visible').click()
         cy.location('pathname').should('eq', '/dashboard')
+
     })
 })
 
@@ -41,6 +42,6 @@ Cypress.Commands.add('loginApi', (email, senha) => {
         expect(response.body.auth).to.be.true;
         expect(response.body.rota).to.eq('/clinica');
         expect(response.body.token).to.exist;
-        cy.wrap(response.body.token).as('token');
+        cy.wrap(response.body.token).as('token')       
     })
 })
